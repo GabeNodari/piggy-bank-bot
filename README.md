@@ -1,46 +1,46 @@
 # Piggy Bank Bot 💰
-A Telegram finance bot that helps track expenses, manage categories, and view monthly balances.
+Um bot de finanças do Telegram que ajuda a rastrear despesas, gerenciar categorias e visualizar saldos mensais.
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
 
-## Features
+## Funcionalidades
 
-- Main menu with inline keyboard options.
-- Add custom expense categories.
-- Edit existing categories from the category view.
-- Add expenses with amount, description, date, category, and recurring flag.
-- View the current month's total spending.
-- View category totals for the current month.
-- View recurring expenses.
-- Delete recent expenses.
-- Reset the database.
+- Menu principal com opções de teclado inline.
+- Adicione categorias de despesas personalizadas.
+- Edite categorias existentes da visualização de categorias.
+- Adicione despesas com valor, descrição, data, categoria e flag recorrente.
+- Visualize o gasto total do mês atual.
+- Visualize totais de categorias para o mês atual.
+- Visualize despesas recorrentes.
+- Exclua despesas recentes.
+- Resete o database.
 
-## Requirements
+## Requisitos
 
-- Any platform with Python support.
-- Python 3.8+ recommended.
-- `python-telegram-bot` and dependencies from `requirements.txt`.
-- A Telegram bot created through BotFather.
-- `.env` file containing the `TELEGRAM_TOKEN` variable.
+- Qualquer plataforma com suporte a Python.
+- Python 3.8+ recomendado.
+- `python-telegram-bot` e dependências de `requirements.txt`.
+- Um bot do Telegram criado através do BotFather.
+- Arquivo `.env` contendo a variável `TELEGRAM_TOKEN`.
 
-## Project Structure
+## Estrutura do Projeto
 
-- `bot.py`: main bot logic and conversation flows.
-- `database.py`: SQLite database creation and data access.
-- `financas.db`: SQLite database file generated automatically.
-- `requirements.txt`: Python dependencies.
+- `bot.py`: lógica principal do bot e fluxos de conversa.
+- `database.py`: criação de database SQLite e acesso aos dados.
+- `financas.db`: arquivo de database SQLite gerado automaticamente.
+- `requirements.txt`: dependências Python.
 
-## Database Schema
+## Esquema do Database
 
-### Table `categories`
+### Tabela `categories`
 
 - `id` INTEGER PRIMARY KEY AUTOINCREMENT
 - `user_id` INTEGER NOT NULL
 - `name` TEXT NOT NULL
 
-### Table `expenses`
+### Tabela `expenses`
 
 - `id` INTEGER PRIMARY KEY AUTOINCREMENT
 - `user_id` INTEGER NOT NULL
@@ -51,51 +51,55 @@ A Telegram finance bot that helps track expenses, manage categories, and view mo
 - `recurring` INTEGER NOT NULL CHECK (recurring IN (0, 1))
 - `category_id` references `categories(id)`
 
-## User Flow and Microcopy
+## Fluxo Principal do Usuário
 
-1. Start the bot with `/start`.
-2. The bot shows the main menu:
+1. Iniciar o bot com `/start`.
+2. O bot mostra o menu principal:
    - `💰 **Gabe's Piggy Bank**\n\nEscolha uma opção no menu abaixo:`
-3. Adding a category:
+3. Adicionar uma categoria:
    - `📁 Digite o nome da nova categoria (ex: Alimentação, Lazer):`
-   - Success message: `✅ Categoria 'Name' criada com sucesso!`
-4. Editing a category:
+   - Mensagem de sucesso: `✅ Categoria 'Name' criada com sucesso!`
+4. Editar uma categoria:
    - `📁 Digite o novo nome para a categoria:`
-   - Success message: `✅ Categoria atualizada para 'Name' com sucesso!`
-5. Adding an expense:
+   - Mensagem de sucesso: `✅ Categoria atualizada para 'Name' com sucesso!`
+5. Adicionar uma despesa:
    - `💸 Digite o valor do gasto (Use pontos ou vírgulas, ex: 45.50):`
-   - Invalid value message: `❌ Valor inválido. Por favor, envie apenas números com ponto ou vírgula (ex: 150.75):`
+   - Mensagem de valor inválido: `❌ Valor inválido. Por favor, envie apenas números com ponto ou vírgula (ex: 150.75):`
    - `📝 Digite uma breve descrição para o gasto:`
    - `📅 Quando ocorreu esse gasto?`
-   - Buttons: `📅 Hoje` and `⌨️ Outra data (Digitar)`
+   - Botões: `📅 Hoje` e `⌨️ Outra data (Digitar)`
    - `📁 Selecione a categoria para este gasto:`
    - `🔄 É um gasto fixo/recorrente mensal?`
-   - Final confirmation: `✅ Gasto registrado com sucesso!`
-6. Viewing categories:
+   - Confirmação final: `✅ Gasto registrado com sucesso!`
+6. Visualizar categorias:
    - `📑 **Categorias Disponíveis:**\n\nSelecione uma categoria para editar:`
-   - Category buttons and `🔙 Voltar ao Menu`
-7. Common flow messages:
-   - `Menu Principal:` returns to the main menu with buttons.
-   - `❌ Processo cancelado.` for cancellation.
+   - Botões de categorias e `🔙 Voltar ao Menu`
+7. Mensagens de fluxo comuns:
+   - `Menu Principal:` retorna ao menu principal com botões.
+   - `❌ Processo cancelado.` para cancelamento.
 
-## How to Run
+## Como Executar
 
-1. Install dependencies:
+**Obs.:** Dependendo do seu sistema, use `python3` ou `py` ao invés de `python`, e `pip3` ou `pip` conforme necessário.
+
+1. Crie e ative um ambiente virtual (venv).
+
+2. Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Create a `.env` file with your Telegram token:
+3. Crie um arquivo `.env` com seu token do Telegram:
 
 ```env
-TELEGRAM_TOKEN=your_token_here
+TELEGRAM_TOKEN=seu_token_aqui
 ```
 
-3. Run the bot:
+4. Execute o bot:
 
 ```bash
 python bot.py
 ```
 
-4. Open Telegram and send `/start` to the bot.
+5. Abra o Telegram e envie `/start` para o bot.
