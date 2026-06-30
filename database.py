@@ -8,7 +8,6 @@ def connect():
 
 
 def initialize_db():
-    """Create necessary tables and migrate old Portuguese schema if needed."""
     with connect() as conn:
         cursor = conn.cursor()
         cursor.execute('''
@@ -94,7 +93,6 @@ def add_expense(user_id, amount, description, date, category_id, recurring):
 
 
 def get_monthly_total(user_id, year_month=None):
-    """Return the sum of expenses for the current month (format: YYYY-MM)."""
     if not year_month:
         year_month = datetime.now().strftime('%Y-%m')
     with connect() as conn:
@@ -108,10 +106,6 @@ def get_monthly_total(user_id, year_month=None):
 
 
 def list_monthly_expenses(user_id, year_month=None):
-    """Return all expenses for the current month as tuples.
-
-    Each tuple contains (amount, description, date, category_name).
-    """
     if not year_month:
         year_month = datetime.now().strftime('%Y-%m')
     with connect() as conn:
@@ -127,7 +121,6 @@ def list_monthly_expenses(user_id, year_month=None):
 
 
 def get_total_by_category(user_id, year_month=None):
-    """Return aggregated expense totals by category for the month."""
     if not year_month:
         year_month = datetime.now().strftime('%Y-%m')
     with connect() as conn:
